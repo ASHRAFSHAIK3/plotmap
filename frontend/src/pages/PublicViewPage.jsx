@@ -45,7 +45,7 @@ export default function PublicViewPage() {
   const filterRef = useRef('all')
 
   useEffect(() => {
-    axios.get(`${API}/api/public/${token}`)
+    axios.get(`${API}/public/${token}`)
       .then(r => {
         const data = r.data
         data.plots = (data.plots || []).map(p => ({
