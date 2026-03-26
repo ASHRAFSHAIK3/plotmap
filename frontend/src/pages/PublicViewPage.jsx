@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const API = (import.meta.env.VITE_API_URL || '/api')
+const API = (import.meta.env.VITE_API_URL)
 
 const SC = {
   Available:  { f: '#E1F5EE', s: '#1D9E75', t: '#085041' },
@@ -45,7 +45,7 @@ export default function PublicViewPage() {
   const filterRef = useRef('all')
 
   useEffect(() => {
-    axios.get(`${API}/public/${token}`)
+    axios.get(`${API}/api/public/${token}`)
       .then(r => {
         const data = r.data
         data.plots = (data.plots || []).map(p => ({
