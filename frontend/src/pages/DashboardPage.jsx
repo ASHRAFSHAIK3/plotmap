@@ -15,7 +15,7 @@ export default function DashboardPage() {
   const [shareModal, setShareModal] = useState(null) // { projectId, token }
 
   useEffect(() => {
-    api.get('/api/projects').then(r => setProjects(r.data)).finally(() => setLoading(false))
+    api.get('/projects').then(r => setProjects(r.data)).finally(() => setLoading(false))
   }, [])
 
   const createProject = async e => {
@@ -31,14 +31,14 @@ export default function DashboardPage() {
   const deleteProject = async (id, e) => {
     e.stopPropagation()
     if (!confirm('Delete this project? This cannot be undone.')) return
-    await api.delete(`/api/projects/${id}`)
+    await api.delete(`/projects/${id}`)
     setProjects(p => p.filter(x => x.id !== id))
   }
 
   const generateShareLink = async (projectId, e) => {
     e.stopPropagation()
     try {
-      const r = await api.post(`/api/projects/${projectId}/share-link`)
+      const r = await api.post(`/projects/${projectId}/share-link`)
       setShareModal({ projectId, token: r.data.token })
     } catch (err) {
       alert(err.response?.data?.error || 'Failed to generate link')
@@ -111,7 +111,7 @@ export default function DashboardPage() {
               </div>
               <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
                 <button className="btn sm danger" onClick={async () => {
-                  await api.delete(`/api/projects/${shareModal.projectId}/share-link`)
+                  await api.delete(`/projects/${shareModal.projectId}/share-link`)
                   setShareModal(null)
                   alert('Link revoked. The old link no longer works.')
                 }}>Revoke link</button>
