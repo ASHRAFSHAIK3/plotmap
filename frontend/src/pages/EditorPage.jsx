@@ -21,14 +21,14 @@ export default function EditorPage() {
   const [generatingLink, setGeneratingLink] = useState(false)
 
   useEffect(() => {
-    api.get(`/projects/${id}`)
+    api.get(`/api/projects/${id}`)
       .then(r => setProject(r.data))
       .catch(() => navigate('/'))
       .finally(() => setLoading(false))
   }, [id])
 
   const handleSave = async (data) => {
-    await api.post(`/projects/${id}/save-layout`, data)
+    await api.post(`/api/projects/${id}/save-layout`, data)
     setSaveMsg('Saved ✓')
     setTimeout(() => setSaveMsg(''), 2000)
   }
@@ -36,7 +36,7 @@ export default function EditorPage() {
   const addMember = async e => {
     e.preventDefault(); setSharing(true)
     try {
-      await api.post(`/projects/${id}/members`, { email: shareEmail, role: shareRole })
+      await api.post(`/api/projects/${id}/members`, { email: shareEmail, role: shareRole })
       setShareEmail(''); setShowShare(false)
       alert('Member added successfully')
     } catch (err) {
@@ -47,7 +47,7 @@ export default function EditorPage() {
   const generatePublicLink = async () => {
     setGeneratingLink(true)
     try {
-      const r = await api.post(`/projects/${id}/share-link`)
+      const r = await api.post(`/api/projects/${id}/share-link`)
       setShareToken(r.data.token)
       setShowPublicShare(true)
     } catch (err) {
@@ -56,7 +56,7 @@ export default function EditorPage() {
   }
 
   const revokePublicLink = async () => {
-    await api.delete(`/projects/${id}/share-link`)
+    await api.delete(`/api/projects/${id}/share-link`)
     setShareToken(null)
     setShowPublicShare(false)
     alert('Public link revoked.')
