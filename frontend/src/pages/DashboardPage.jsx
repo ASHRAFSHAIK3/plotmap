@@ -21,7 +21,7 @@ export default function DashboardPage() {
   const createProject = async e => {
     e.preventDefault(); setCreating(true)
     try {
-      const r = await api.post('/api/projects', newForm)
+      const r = await api.post('/projects', newForm)
       navigate(`/project/${r.data.id}`)
     } catch (err) {
       alert(err.response?.data?.error || 'Failed to create project')
