@@ -15,7 +15,7 @@ export default function DashboardPage() {
   const [shareModal, setShareModal] = useState(null) // { projectId, token }
 
   useEffect(() => {
-    api.get('/projects').then(r => setProjects(r.data)).finally(() => setLoading(false))
+    api.get('/api/projects').then(r => setProjects(r.data)).finally(() => setLoading(false))
   }, [])
 
   const createProject = async e => {
