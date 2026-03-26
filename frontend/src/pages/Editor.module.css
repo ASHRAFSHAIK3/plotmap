@@ -1,0 +1,55 @@
+.page { display: flex; flex-direction: column; height: 100vh; background: var(--bg); }
+
+.loading {
+  display: flex; align-items: center; justify-content: center;
+  height: 100vh; color: var(--text2); font-size: 14px;
+}
+
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px; height: 52px;
+  background: var(--bg3); border-bottom: 1px solid var(--border);
+  flex-shrink: 0; z-index: 10;
+}
+
+.headerLeft, .headerRight { display: flex; align-items: center; gap: 12px; }
+
+.back {
+  font-size: 13px; color: var(--text2); text-decoration: none;
+  display: flex; align-items: center; gap: 4px;
+}
+.back:hover { color: var(--text); }
+
+.sep { width: 1px; height: 16px; background: var(--border2); }
+
+.projName { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+
+.saveMsg { font-size: 12px; color: var(--green); font-weight: 500; }
+
+.userName { font-size: 13px; color: var(--text2); }
+
+.members { display: flex; gap: -4px; }
+
+.avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--accent-bg); color: var(--accent);
+  font-size: 11px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--bg3);
+  margin-left: -6px;
+}
+
+.editorWrap { flex: 1; overflow: hidden; }
+
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.3);
+  display: flex; align-items: center; justify-content: center; z-index: 100;
+}
+.modal {
+  background: var(--bg3); border-radius: var(--radius-lg);
+  padding: 28px; width: 460px; max-height: 80vh; overflow-y: auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+}
+.modal h2 { font-size: 18px; font-weight: 600; margin-bottom: 6px; letter-spacing: -0.02em; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 12px; font-weight: 500; color: var(--text2); }
